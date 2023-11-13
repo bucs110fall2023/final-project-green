@@ -30,7 +30,7 @@ Anthony Parisi and Eric Hom
 
 ### Features
 
-1. << Start menu >>
+1. << Start menu
 2. << Moveable character >>
 3. << Object collisions >>
 4. << scrolling background >>
