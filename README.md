@@ -6,13 +6,13 @@
 
 ## Team Members
 
-<< List team member names >>
+<< Anthony Parisi and Eric Hom >>
 
 ***
 
 ## Project Description
 
-<< Give an overview of your project >>
+<< Our game is going to be a recreation of the game doodle jump, with some changes. The character is going to jump from platform to platform vertically and gains points as the character jumps higher. >>
 
 ***    
 
@@ -30,11 +30,11 @@
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. << Start menu >>
+2. << Moveable character >>
+3. << Object collisions >>
+4. << scrolling background >>
+5. << Game over screen >>
 
 ### Classes
 
