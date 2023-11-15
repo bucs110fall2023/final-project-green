@@ -12,7 +12,7 @@ Anthony Parisi and Eric Hom
 
 ## Project Description
 
-<< Our game is going to be a recreation of the game doodle jump, with some changes. The character is going to jump from platform to platform vertically and gains points as the character jumps higher. >>
+Our game is going to be a recreation of the game doodle jump, with some changes. The character is going to jump from platform to platform vertically and gains points as the character jumps higher.
 
 ***    
 
@@ -30,11 +30,11 @@ Anthony Parisi and Eric Hom
 
 ### Features
 
-1. << Start menu >>
-2. << Moveable character >>
-3. << Object collisions >>
-4. << scrolling background >>
-5. << Game over screen >>
+1. Start menu
+2. Moveable character
+3. Object collisions
+4. scrolling background
+5. Game over screen
 
 ### Classes
 
