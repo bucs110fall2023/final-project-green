@@ -1,6 +1,6 @@
 import pygame
 
-class Player(pygame.sprite.Sprite):
+class Character(pygame.sprite.Sprite):
     def __init__(self, x, y, img = "doodle.jpg"):
         super().__init__()
 
