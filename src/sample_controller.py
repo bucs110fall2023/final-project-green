@@ -1,4 +1,5 @@
 import pygame
+from player import Player
 
 class Controller:
   
@@ -8,6 +9,8 @@ class Controller:
     self.width, self.height = pygame.display.get_window_size()
     self.background = pygame.Surface((self.width, self.height))
     self.background.fill("lightblue")
+    
+    doodle = Player((self.width/2, self.height/2))
     
     pygame.display.flip()
     
