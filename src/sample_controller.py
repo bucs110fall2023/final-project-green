@@ -11,8 +11,8 @@ class Controller:
         self.background.fill("lightblue")
 
         self.doodles = pygame.sprite.Group()
-        doodle = Character((self.width/2), (self.height/2))
-        self.doodles.add(doodle)
+        self.doodle = Character((self.width/2), (self.height/2))
+        self.doodles.add(self.doodle)
 
         pygame.display.flip()
 
@@ -20,11 +20,36 @@ class Controller:
         #select state loop
         running = True
         clock = pygame.time.Clock()
+        
+        move_left = False
+        move_right = False
+        move_jump = False
 
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_a:
+                        move_left = True
+                    elif event.key == pygame.K_d:
+                        move_right = True
+                    elif event.key == pygame.K_SPACE:
+                        move_jump = True
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_a:
+                        move_left = False
+                    elif event.key == pygame.K_d:
+                        move_right = False
+                    elif event.key == pygame.K_SPACE:
+                        move_jump = False                  
+                
+                if(move_left):
+                    self.doodle.rect.x -= 5
+                elif(move_right):
+                    self.doodle.rect.x += 5
+                elif(move_jump):
+                    self.doodle.rect.y -= 10                
 
             self.doodles.update()
 
