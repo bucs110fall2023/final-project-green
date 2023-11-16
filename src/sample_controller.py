@@ -3,32 +3,38 @@ import pygame
 class Controller:
   
   def __init__(self):
-    #setup pygame data
+    pygame.init()
+    self.screen = pygame.display.set_mode()
+    self.width, self.height = pygame.display.get_window_size()
+    self.background = pygame.Surface((self.width, self.height))
+    self.background.fill("lightblue")
     
-  def mainloop(self):
-    #select state loop
+    pygame.display.flip()
+    
+  # def mainloop(self):
+  #   #select state loop
     
   
-  ### below are some sample loop states ###
+  # ### below are some sample loop states ###
 
-  def menuloop(self):
+  # def menuloop(self):
     
-      #event loop
+  #     #event loop
 
-      #update data
+  #     #update data
 
-      #redraw
+  #     #redraw
       
-  def gameloop(self):
-      #event loop
+  # def gameloop(self):
+  #     #event loop
 
-      #update data
+  #     #update data
 
-      #redraw
+  #     #redraw
     
-  def gameoverloop(self):
-      #event loop
+  # def gameoverloop(self):
+  #     #event loop
 
-      #update data
+  #     #update data
 
-      #redraw
+  #     #redraw
