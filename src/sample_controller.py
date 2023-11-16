@@ -3,40 +3,40 @@ from character import Character
 
 class Controller:
   
-  def __init__(self):
-    pygame.init()
-    self.screen = pygame.display.set_mode((500, 850))
-    self.width, self.height = pygame.display.get_window_size()
-    self.background = pygame.Surface((self.width, self.height))
-    self.background.fill("lightblue")
-    
-    self.doodles = pygame.sprite.Group()
-    doodle = Character((self.width/2), (self.height/2))
-    self.doodles.add(doodle)
-        
-    pygame.display.flip()
-    
-  def mainloop(self):
-  #   #select state loop
-      running = True
-      clock = pygame.time.Clock()
+    def __init__(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((500, 850))
+        self.width, self.height = pygame.display.get_window_size()
+        self.background = pygame.Surface((self.width, self.height))
+        self.background.fill("lightblue")
 
-      while running:
-          for event in pygame.event.get():
-              if event.type == pygame.QUIT:
-                  running = False
+        self.doodles = pygame.sprite.Group()
+        doodle = Character((self.width/2), (self.height/2))
+        self.doodles.add(doodle)
 
-          self.doodles.update()
+        pygame.display.flip()
 
-          self.screen.blit(self.background, (0, 0))
-          self.doodles.draw(self.screen)
+    def mainloop(self):
+        #select state loop
+        running = True
+        clock = pygame.time.Clock()
 
-          pygame.display.flip()
-          clock.tick(60)
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
 
-      pygame.quit()
+            self.doodles.update()
 
-    
+            self.screen.blit(self.background, (0, 0))
+            self.doodles.draw(self.screen)
+
+            pygame.display.flip()
+            clock.tick(60)
+
+        pygame.quit()
+
+
   
   # ### below are some sample loop states ###
 
