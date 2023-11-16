@@ -5,8 +5,8 @@ class Controller:
   
   def __init__(self):
     pygame.init()
-    self.screen = pygame.display.set_mode()
-    self.width, self.height = pygame.display.get_window_size(())
+    self.screen = pygame.display.set_mode((900, 600))
+    self.width, self.height = pygame.display.get_window_size()
     self.background = pygame.Surface((self.width, self.height))
     self.background.fill("lightblue")
     
