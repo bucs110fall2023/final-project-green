@@ -13,14 +13,21 @@ class Controller:
         self.doodles = pygame.sprite.Group()
         self.doodle = Character((self.width/2), (self.height/2))
         self.doodles.add(self.doodle)
+        
+        self.gravity = 1.5
+        
+        self.clock = pygame.time.Clock()
+        self.fps = 60
 
         pygame.display.flip()
+        
+    def apply_gravity(self):
+        if self.doodle.rect.y < self.height - self.doodle.rect.height:
+            self.doodle.rect.y += self.gravity
 
     def mainloop(self):
         #select state loop
         running = True
-        clock = pygame.time.Clock()
-        
         move_left = False
         move_right = False
         move_jump = False
@@ -44,20 +51,23 @@ class Controller:
                     elif event.key == pygame.K_SPACE:
                         move_jump = False                  
                 
-                if(move_left):
-                    self.doodle.rect.x -= 5
-                elif(move_right):
-                    self.doodle.rect.x += 5
-                elif(move_jump):
-                    self.doodle.rect.y -= 10                
-
+            if(move_left):
+                self.doodle.rect.x -= 5
+            elif(move_right):
+                self.doodle.rect.x += 5
+            
+            if(move_jump):
+                self.doodle.rect.y -= 15
+            
+            self.apply_gravity()          
             self.doodles.update()
 
             self.screen.blit(self.background, (0, 0))
             self.doodles.draw(self.screen)
 
             pygame.display.flip()
-            clock.tick(60)
+            
+            self.clock.tick(self.fps)
 
         pygame.quit()
 

@@ -7,7 +7,7 @@ class Character(pygame.sprite.Sprite):
         self.image = pygame.image.load(img)
         self.rect = self.image.get_rect()
         self.rect.x = x 
-        self.rect.y = y 
+        self.rect.y = y
         
         self.image = pygame.transform.scale(self.image, (60, 60))
         
