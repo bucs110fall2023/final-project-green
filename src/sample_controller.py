@@ -20,10 +20,6 @@ class Controller:
         self.fps = 60
 
         pygame.display.flip()
-        
-    def apply_gravity(self):
-        if self.doodle.rect.y < self.height - self.doodle.rect.height:
-            self.doodle.rect.y += self.gravity
 
     def mainloop(self):
         #select state loop
@@ -59,7 +55,9 @@ class Controller:
             if(move_jump):
                 self.doodle.rect.y -= 15
             
-            self.apply_gravity()          
+            if self.doodle.rect.y < self.height - self.doodle.rect.height:
+                self.doodle.rect.y += self.gravity   
+            
             self.doodles.update()
 
             self.screen.blit(self.background, (0, 0))
