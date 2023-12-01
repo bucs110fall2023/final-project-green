@@ -14,7 +14,7 @@ class Controller:
         self.doodle = Character((self.width/2), (self.height/2))
         self.doodles.add(self.doodle)
         
-        self.gravity = 1.5
+        self.gravity = 2
         
         self.clock = pygame.time.Clock()
         self.fps = 60
@@ -38,22 +38,17 @@ class Controller:
                     elif event.key == pygame.K_d:
                         move_right = True
                     elif event.key == pygame.K_SPACE:
-                        move_jump = True
+                        self.doodle.rect.y -= 100
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_a:
                         move_left = False
                     elif event.key == pygame.K_d:
-                        move_right = False
-                    elif event.key == pygame.K_SPACE:
-                        move_jump = False                  
+                        move_right = False              
                 
             if(move_left):
                 self.doodle.rect.x -= 5
             elif(move_right):
                 self.doodle.rect.x += 5
-            
-            if(move_jump):
-                self.doodle.rect.y -= 15
             
             if self.doodle.rect.y < self.height - self.doodle.rect.height:
                 self.doodle.rect.y += self.gravity   
