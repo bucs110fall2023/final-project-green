@@ -1,4 +1,5 @@
 import pygame
+import random
 from character import Character
 from platforms import Platforms
 
@@ -52,6 +53,14 @@ class Controller:
                 self.doodle.rect.x -= 10
             elif(move_right):
                 self.doodle.rect.x += 10
+                
+            p_w = random.randint(40, 60)
+            p_x = random.randint(0, 500 - p_w)
+            p_y = self.platforms.sprites()[-1].rect.y - random.randint(80, 120)
+            platform = Platforms(p_x, p_y, p_w)
+
+            if len(self.platforms) < 10:
+                self.platforms.add(platform)
 
             self.doodle.update_jump(self.gravity)
             self.doodle.wrap_around(self.width)
