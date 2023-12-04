@@ -1,5 +1,5 @@
 import pygame
-import sys
+import sys 
 sys.path.append("src")
 
 from src.sample_controller import Controller

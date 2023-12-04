@@ -1,5 +1,6 @@
 import pygame
 from character import Character
+from platforms import Platforms
 
 class Controller:
   
@@ -11,10 +12,15 @@ class Controller:
         self.background.fill("lightblue")
 
         self.doodles = pygame.sprite.Group()
-        self.doodle = Character((self.width/2), (self.height/2))
+        self.doodle = Character((self.width/2), (self.height - 60))
         self.doodles.add(self.doodle)
         
-        self.gravity = 2
+        self.platforms = pygame.sprite.Group()
+        platform = Platforms(self.width // 2 - 50, self.height // 2 + 250, 100)
+        self.platforms.add(platform)
+        
+        self.gravity = 1
+        self.jump_velocity = -20
         
         self.clock = pygame.time.Clock()
         self.fps = 60
@@ -26,7 +32,6 @@ class Controller:
         running = True
         move_left = False
         move_right = False
-        move_jump = False
 
         while running:
             for event in pygame.event.get():
@@ -37,8 +42,6 @@ class Controller:
                         move_left = True
                     elif event.key == pygame.K_d:
                         move_right = True
-                    elif event.key == pygame.K_SPACE:
-                        self.doodle.rect.y -= 100
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_a:
                         move_left = False
@@ -46,17 +49,18 @@ class Controller:
                         move_right = False              
                 
             if(move_left):
-                self.doodle.rect.x -= 5
+                self.doodle.rect.x -= 10
             elif(move_right):
-                self.doodle.rect.x += 5
-            
-            if self.doodle.rect.y < self.height - self.doodle.rect.height:
-                self.doodle.rect.y += self.gravity   
+                self.doodle.rect.x += 10
+
+            self.doodle.update_jump(self.gravity)
+            self.doodle.wrap_around(self.width)
             
             self.doodles.update()
 
             self.screen.blit(self.background, (0, 0))
             self.doodles.draw(self.screen)
+            self.platforms.draw(self.screen)
 
             pygame.display.flip()
             
@@ -64,8 +68,6 @@ class Controller:
 
         pygame.quit()
 
-
-  
   # ### below are some sample loop states ###
 
   # def menuloop(self):
