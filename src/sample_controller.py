@@ -51,28 +51,34 @@ class Controller:
             elif(move_right):
                 self.doodle.rect.x += 10
             
-            plat_width = random.randint(40, 60)
-            plat_x = random.randint(0, self.width - plat_width)
-            plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
-            platform = Platforms(plat_x, plat_y, plat_width)
+            # plat_width = random.randint(40, 60)
+            # plat_x = random.randint(0, self.width - plat_width)
+            # plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
+            # platform = Platforms(plat_x, plat_y, plat_width)
 
             if len(self.platform_group) < 10:
-                # plat_width = random.randint(40, 60)
-                # plat_x = random.randint(0, self.width - plat_width)
-                # plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
-                # platform = Platforms(plat_x, plat_y, plat_width)
+                plat_width = random.randint(40, 60)
+                plat_x = random.randint(0, self.width - plat_width)
+                plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
+                platform = Platforms(plat_x, plat_y, plat_width)
                 self.platform_group.add(platform)
             
+            # for platform in self.platform_group:
+            #     if platform.rect.colliderect(self.doodle.rect.x, self.doodle.rect.y, self.width, self.height):
+            #         if self.doodle.rect.bottom < platform.rect.centery:
+            #             if self.doodle.velocity_y > 0:
+            #                 self.doodle.rect.bottom = platform.rect.top
+            #                 dy = 0
+            #                 self.doodle.velocity_y = -20
+                
             for platform in self.platform_group:
-                if platform.rect.colliderect(self.doodle.rect.x, self.doodle.rect.y, self.doodle.width, self.doodle.height):
-                    if self.doodle.rect.bottom < platform.rect.centery:
-                        if self.doodle.velocity_y > 0:
-                            self.doodle.rect.bottom = platform.rect.top
-                            dy = 0
-                            self.doodle.velocity_y = -20
-                                              
+                if platform.rect.colliderect(self.doodle.rect):
+                    if self.doodle.rect.bottom <= platform.rect.top + 50:  
+                        self.doodle.rect.bottom = platform.rect.top
+                        self.doodle.velocity_y = -20
+                         
             self.doodle.update_jump(self.gravity)
-            self.doodle.wrap_around(self.width)
+            self.doodle.wrap_around(self.width) 
 
             self.screen.blit(self.background, (0, 0))
             self.platform_group.draw(self.screen)
