@@ -12,16 +12,13 @@ class Controller:
         self.background = pygame.Surface((self.width, self.height))
         self.background.fill("lightblue")
 
-        self.doodles = pygame.sprite.Group()
         self.doodle = Character((self.width/2), (self.height - 60))
-        self.doodles.add(self.doodle)
         
-        self.platforms = pygame.sprite.Group()
+        self.platform_group = pygame.sprite.Group()
         platform = Platforms(self.width // 2 - 50, self.height // 2 + 250, 100)
-        self.platforms.add(platform)
+        self.platform_group.add(platform)
         
         self.gravity = 1
-        self.jump_velocity = -20
         
         self.clock = pygame.time.Clock()
         self.fps = 60
@@ -53,35 +50,34 @@ class Controller:
                 self.doodle.rect.x -= 10
             elif(move_right):
                 self.doodle.rect.x += 10
-                
+            
             plat_width = random.randint(40, 60)
-            plat_x = random.randint(0, 500 - plat_width)
-            plat_y = self.platforms.sprites()[-1].rect.y - random.randint(80, 120)
+            plat_x = random.randint(0, self.width - plat_width)
+            plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
             platform = Platforms(plat_x, plat_y, plat_width)
 
-            if len(self.platforms) < 10:
-                self.platforms.add(platform)
+            if len(self.platform_group) < 10:
+                # plat_width = random.randint(40, 60)
+                # plat_x = random.randint(0, self.width - plat_width)
+                # plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
+                # platform = Platforms(plat_x, plat_y, plat_width)
+                self.platform_group.add(platform)
             
-            dy = 0
-            dy += self.gravity
-            
-            for platform in self.platforms:
-                if platform.rect.colliderect(self.doodle.rect.x, self.doodle.rect.y + dy, self.width, self.height):
+            for platform in self.platform_group:
+                if platform.rect.colliderect(self.doodle.rect.x, self.doodle.rect.y, self.doodle.width, self.doodle.height):
                     if self.doodle.rect.bottom < platform.rect.centery:
                         if self.doodle.velocity_y > 0:
                             self.doodle.rect.bottom = platform.rect.top
                             dy = 0
                             self.doodle.velocity_y = -20
-                            
-            self.doodle.rect.y += dy                
+                                              
             self.doodle.update_jump(self.gravity)
             self.doodle.wrap_around(self.width)
-            
-            self.doodles.update()
 
             self.screen.blit(self.background, (0, 0))
-            self.doodles.draw(self.screen)
-            self.platforms.draw(self.screen)
+            self.platform_group.draw(self.screen)
+            self.screen.blit(self.doodle.image, self.doodle.rect.topleft)
+            pygame.draw.rect(self.screen, "white", self.doodle.rect, 2)
 
             pygame.display.flip()
             
