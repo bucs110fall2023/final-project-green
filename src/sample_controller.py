@@ -54,14 +54,26 @@ class Controller:
             elif(move_right):
                 self.doodle.rect.x += 10
                 
-            p_w = random.randint(40, 60)
-            p_x = random.randint(0, 500 - p_w)
-            p_y = self.platforms.sprites()[-1].rect.y - random.randint(80, 120)
-            platform = Platforms(p_x, p_y, p_w)
+            plat_width = random.randint(40, 60)
+            plat_x = random.randint(0, 500 - plat_width)
+            plat_y = self.platforms.sprites()[-1].rect.y - random.randint(80, 120)
+            platform = Platforms(plat_x, plat_y, plat_width)
 
             if len(self.platforms) < 10:
                 self.platforms.add(platform)
-
+            
+            dy = 0
+            dy += self.gravity
+            
+            for platform in self.platforms:
+                if platform.rect.colliderect(self.doodle.rect.x, self.doodle.rect.y + dy, self.width, self.height):
+                    if self.doodle.rect.bottom < platform.rect.centery:
+                        if self.doodle.velocity_y > 0:
+                            self.doodle.rect.bottom = platform.rect.top
+                            dy = 0
+                            self.doodle.velocity_y = -20
+                            
+            self.doodle.rect.y += dy                
             self.doodle.update_jump(self.gravity)
             self.doodle.wrap_around(self.width)
             

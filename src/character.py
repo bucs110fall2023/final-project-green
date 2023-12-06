@@ -9,6 +9,7 @@ class Character(pygame.sprite.Sprite):
         self.rect.y = y
         self.velocity_y = 0
         self.is_jumping = False
+        self.jump_count = 0
         
         self.image = pygame.transform.scale(self.image, (50, 50))
         
@@ -17,10 +18,9 @@ class Character(pygame.sprite.Sprite):
     def update_jump(self, gravity):
         self.rect.y += self.velocity_y
         self.velocity_y += gravity
-
-        if self.rect.y >= 850 - self.rect.height:
+        self.w, self.h = pygame.display.get_window_size()
+        if self.rect.y >= self.h - 50:
             self.velocity_y = -20 
-            self.rect.y = 850 - self.rect.height
             
     def wrap_around(self, screen_width):
         if self.rect.x > screen_width:

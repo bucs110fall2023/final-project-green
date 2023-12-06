@@ -1,7 +1,7 @@
 import pygame
 
 class Platforms(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, img = "assets/wood.png"):
+    def __init__(self, x, y, width, img = "assets/rectangle.png"):
         super().__init__()
         self.image = pygame.image.load(img)
         self.rect = self.image.get_rect()
