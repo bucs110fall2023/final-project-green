@@ -19,6 +19,7 @@ class Controller:
         self.platform_group.add(platform)
         
         self.gravity = 1
+        self.max_plats = 10
         
         self.clock = pygame.time.Clock()
         self.fps = 60
@@ -56,7 +57,7 @@ class Controller:
             # plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
             # platform = Platforms(plat_x, plat_y, plat_width)
 
-            if len(self.platform_group) < 10:
+            if len(self.platform_group) < self.max_plats:
                 plat_width = random.randint(40, 60)
                 plat_x = random.randint(0, self.width - plat_width)
                 plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
@@ -77,10 +78,14 @@ class Controller:
                         self.doodle.rect.bottom = platform.rect.top
                         self.doodle.velocity_y = -20
                          
-            self.doodle.update_jump(self.gravity)
+            scroll = self.doodle.update_jump(self.gravity)
             self.doodle.wrap_around(self.width) 
 
             self.screen.blit(self.background, (0, 0))
+            pygame.draw.line(self.screen, "white", (0, self.doodle.scroll_threshold), (self.width, self.doodle.scroll_threshold))
+            
+            self.platform_group.update(scroll)
+            
             self.platform_group.draw(self.screen)
             self.screen.blit(self.doodle.image, self.doodle.rect.topleft)
             pygame.draw.rect(self.screen, "white", self.doodle.rect, 2)

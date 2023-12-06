@@ -11,5 +11,6 @@ class Platforms(pygame.sprite.Sprite):
         
     def update(self, scroll):
         self.rect.y += scroll
-        if self.rect.top > self.height:
+        self.w, self.h = pygame.display.get_window_size()
+        if self.rect.top > self.h:
             self.kill()

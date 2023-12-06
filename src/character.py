@@ -12,10 +12,13 @@ class Character(pygame.sprite.Sprite):
         self.rect.y = y
         self.rect.center = (x, y)
         self.velocity_y = 0
+        self.scroll_threshold = 200
+        self.scroll = 0
 
         pygame.display.flip()
         
     def update_jump(self, gravity):
+        self.scroll = 0 
         self.dx = 0
         self.dy = 0
         
@@ -27,17 +30,16 @@ class Character(pygame.sprite.Sprite):
         if self.rect.bottom + self.dy > self.h:
             self.dy = 0
             self.velocity_y = -20
-            
-        self.rect.x += self.dx
-        self.rect.y += self.dy
         
-        # self.rect.y += self.velocity_y
-        # self.velocity_y += gravity
-        # self.w, self.h = pygame.display.get_window_size()
-        # if self.rect.y >= self.h - 50:
-        #     self.velocity_y = -20 
-        # return self.velocity_y
-            
+        if self.rect.top <= self.scroll_threshold:
+            if self.velocity_y < 0:
+                self.scroll = -self.dy  
+        
+        self.rect.x += self.dx
+        self.rect.y += self.dy + self.scroll
+        
+        return self.scroll
+        
     def wrap_around(self, screen_width):
         if self.rect.x > screen_width:
             self.rect.x = -self.rect.width
