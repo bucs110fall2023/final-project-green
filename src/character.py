@@ -27,9 +27,9 @@ class Character(pygame.sprite.Sprite):
         self.velocity_y += gravity
         self.dy += self.velocity_y
         
-        if self.rect.bottom + self.dy > self.h:
-            self.dy = 0
-            self.velocity_y = -20
+        # if self.rect.bottom + self.dy > self.h:
+        #     self.dy = 0
+        #     self.velocity_y = -20
         
         if self.rect.top <= self.scroll_threshold:
             if self.velocity_y < 0:

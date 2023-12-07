@@ -14,9 +14,12 @@ class Controller:
 
         self.doodle = Character((self.width/2), (self.height - 60))
         
+        start_platform = Platforms(self.width // 2 - 50, self.height - 40, 100)
+        
         self.platform_group = pygame.sprite.Group()
         platform = Platforms(self.width // 2 - 50, self.height // 2 + 250, 100)
         self.platform_group.add(platform)
+        self.platform_group.add(start_platform)
         
         self.gravity = 1
         self.max_plats = 10
@@ -31,6 +34,7 @@ class Controller:
         running = True
         move_left = False
         move_right = False
+        game_over = False
 
         while running:
             for event in pygame.event.get():
@@ -56,7 +60,7 @@ class Controller:
             # plat_x = random.randint(0, self.width - plat_width)
             # plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
             # platform = Platforms(plat_x, plat_y, plat_width)
-
+        
             if len(self.platform_group) < self.max_plats:
                 plat_width = random.randint(40, 60)
                 plat_x = random.randint(0, self.width - plat_width)
@@ -74,7 +78,7 @@ class Controller:
                 
             for platform in self.platform_group:
                 if platform.rect.colliderect(self.doodle.rect):
-                    if self.doodle.rect.bottom <= platform.rect.top + 50:  
+                    if self.doodle.rect.bottom <= platform.rect.top + 20:  
                         self.doodle.rect.bottom = platform.rect.top
                         self.doodle.velocity_y = -20
                          
@@ -89,6 +93,9 @@ class Controller:
             self.platform_group.draw(self.screen)
             self.screen.blit(self.doodle.image, self.doodle.rect.topleft)
             pygame.draw.rect(self.screen, "white", self.doodle.rect, 2)
+            
+            if self.doodle.rect.top > self.height:
+                game_over = True
 
             pygame.display.flip()
             
