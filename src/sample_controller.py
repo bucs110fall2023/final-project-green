@@ -13,7 +13,7 @@ class Controller:
         self.start_background = pygame.Surface((self.width, self.height))
         self.start_background.fill("cornflowerblue")
         self.background.fill("lightblue")
-        pygame.display.set_caption("CS 110 Final Project - Doodle Jump")
+        pygame.display.set_caption("CS 110 Final Project - Monkey Jump")
         self.start_button = pygame.Rect(200, 400, 100, 50)
 
         self.doodle = Character((self.width/2), (self.height - 60))
