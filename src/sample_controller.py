@@ -25,13 +25,13 @@ class Controller:
         self.platform_group.add(platform)
         self.platform_group.add(start_platform)
         
-        self.gravity = 1
-        self.max_plats = 10
+        self.GRAVITY = 1
+        self.MAX_PLATS = 10
         
-        self.font = pygame.font.SysFont("bebas neue", 55)
+        self.font = pygame.font.SysFont("Arial", 55)
         
         self.clock = pygame.time.Clock()
-        self.fps = 60
+        self.FPS = 60
 
         pygame.display.flip()
 
@@ -51,9 +51,6 @@ class Controller:
                         move_left = True
                     elif event.key == pygame.K_d:
                         move_right = True
-                    #  elif event.type == pygame.MOUSEBUTTONDOWN:
-                    #      if self.start_button.collidepoint(pygame.mouse.get_pos()):
-                    #         start_screen = False
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_a:
                         move_left = False
@@ -81,7 +78,7 @@ class Controller:
             else:
 
                 if game_over == False:
-                    if len(self.platform_group) < self.max_plats:
+                    if len(self.platform_group) < self.MAX_PLATS:
                         plat_width = random.randint(40, 60)
                         plat_x = random.randint(0, self.width - plat_width)
                         plat_y = self.platform_group.sprites()[-1].rect.y - random.randint(80, 120)
@@ -95,52 +92,26 @@ class Controller:
                                     self.doodle.rect.bottom = platform.rect.top
                                     self.doodle.velocity_y = -20
                                 
-                    scroll = self.doodle.update_jump(self.gravity)
+                    scroll = self.doodle.update_jump(self.GRAVITY)
                     self.doodle.wrap_around(self.width) 
 
                     self.screen.blit(self.background, (0, 0))
-                    # pygame.draw.line(self.screen, "white", (0, self.doodle.scroll_threshold), (self.width, self.doodle.scroll_threshold))
                     
                     self.platform_group.update(scroll)
                     
                     self.platform_group.draw(self.screen)
                     self.screen.blit(self.doodle.image, self.doodle.rect.topleft)
-                    # pygame.draw.rect(self.screen, "white", self.doodle.rect, 2)
                     
                     if self.doodle.rect.top > self.height:
                         game_over = True
 
                     pygame.display.flip()
                     
-                    self.clock.tick(self.fps)
+                    self.clock.tick(self.FPS)
                 else:
                     game_over_text = self.font.render("Game Over!", True, "dimgray")
-                    self.screen.blit(game_over_text, (150, 400))
+                    self.screen.blit(game_over_text, (100, 400))
                     
                     pygame.display.flip()
 
         pygame.quit()
-
-  # ### below are some sample loop states ###
-
-  # def menuloop(self):
-    
-  #     #event loop
-
-  #     #update data
-
-  #     #redraw
-      
-  # def gameloop(self):
-  #     #event loop
-
-  #     #update data
-
-  #     #redraw
-    
-  # def gameoverloop(self):
-  #     #event loop
-
-  #     #update data
-
-  #     #redraw
