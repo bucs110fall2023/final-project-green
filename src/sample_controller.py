@@ -75,9 +75,8 @@ class Controller:
                 text_rect = text.get_rect(center=self.start_button.center)
                 self.screen.blit(text, (self.width/2 - 40, self.height/2 - 13))
                 
-                pygame.display.flip()
+                pygame.display.flip()            
             else:
-
                 if game_over == False:
                     if len(self.platform_group) < self.MAX_PLATS:
                         plat_width = random.randint(40, 60)
