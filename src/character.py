@@ -1,7 +1,7 @@
 import pygame
 
 class Character(pygame.sprite.Sprite):
-    def __init__(self, x, y, img = "assets/doodle.jpg"):
+    def __init__(self, x, y, img = "assets/monkey.png"):
         super().__init__()
         self.image = pygame.image.load(img)
         self.image = pygame.transform.scale(self.image, (45, 45))
@@ -18,6 +18,14 @@ class Character(pygame.sprite.Sprite):
         pygame.display.flip()
         
     def update_jump(self, gravity):
+        """_summary_
+
+        Args:
+            gravity (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.scroll = 0 
         self.dx = 0
         self.dy = 0
@@ -37,6 +45,11 @@ class Character(pygame.sprite.Sprite):
         return self.scroll
         
     def wrap_around(self, screen_width):
+        """_summary_
+
+        Args:
+            screen_width (_type_): _description_
+        """
         if self.rect.x > screen_width:
             self.rect.x = -self.rect.width
         elif self.rect.x < -self.rect.width:

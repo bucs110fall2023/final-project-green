@@ -10,6 +10,11 @@ class Platforms(pygame.sprite.Sprite):
         self.rect.y = y
         
     def update(self, scroll):
+        """_summary_
+
+        Args:
+            scroll (_type_): _description_
+        """
         self.rect.y += scroll
         self.w, self.h = pygame.display.get_window_size()
         if self.rect.top > self.h:
