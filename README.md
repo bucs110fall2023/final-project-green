@@ -12,7 +12,7 @@ Anthony Parisi and Eric Hom
 
 ## Project Description
 
-Our game is going to be a recreation of the game doodle jump, with some changes. The character is going to jump from platform to platform vertically and gains points as the character jumps higher.
+Our game is going to be a recreation of the game doodle jump. The character (Monkey) will be constantly jumping and will be able to move to the left or to the right to get to the next platforms to jump on. The player will also be able to wrap, for example, if it goes off the screen to the right it will appear again coming from the left. We have also added a start screen and a game over condition.
 
 ***    
 
@@ -24,7 +24,9 @@ Our game is going to be a recreation of the game doodle jump, with some changes.
 
 ### Final Design
 
-![final gui](assets/finalgui.jpg)
+![final gui start screen](assets/finalguistart.jpg)
+![final gui game screen](assets/finalgui.jpg)
+![final gui end screen](assets/finalguiend.jpg)
 
 ## Program Design
 
@@ -38,7 +40,11 @@ Our game is going to be a recreation of the game doodle jump, with some changes.
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
+### Character class
+This class initialized the character sprite model. This class also handles the jumping mechanics of the model and wrap around feature. It also returns information that makes the vertical scrolling possible.
+
+### Platforms class
+This class initializes the platform sprite model. It also uses the scrolling of the screen to update the positions of the platforms on screen.
 
 ## ATP
 

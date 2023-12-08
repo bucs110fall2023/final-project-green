@@ -15,6 +15,7 @@ class Controller:
         self.background.fill("lightblue")
         pygame.display.set_caption("CS 110 Final Project - Monkey Jump")
         self.start_button = pygame.Rect(200, 400, 100, 50)
+        self.restart_button = pygame.Rect(200, 450, 110, 50)
 
         self.doodle = Character((self.width/2), (self.height - 60))
         
@@ -111,6 +112,19 @@ class Controller:
                 else:
                     game_over_text = self.font.render("Game Over!", True, "dimgray")
                     self.screen.blit(game_over_text, (100, 400))
+                    
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if self.restart_button.collidepoint(pygame.mouse.get_pos()):
+                            start_screen = True
+                            game_over = False
+                            self.__init__()
+                        self.screen.blit(self.start_background, (0, 0))
+                
+                    pygame.draw.rect(self.screen, "ivory", self.restart_button)
+                    font = pygame.font.Font(None, 36)
+                    text = font.render("RESTART", True, "black")
+                    text_rect = text.get_rect(center=self.restart_button.center)
+                    self.screen.blit(text, (self.width/2 - 50, self.height/2 + 37))
                     
                     pygame.display.flip()
 
