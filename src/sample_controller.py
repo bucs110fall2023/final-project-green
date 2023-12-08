@@ -75,10 +75,11 @@ class Controller:
                 #                 self.doodle.velocity_y = -20
                     
                 for platform in self.platform_group:
-                    if platform.rect.colliderect(self.doodle.rect):
-                        if self.doodle.rect.bottom <= platform.rect.top + 30:  
-                            self.doodle.rect.bottom = platform.rect.top
-                            self.doodle.velocity_y = -20
+                    if self.doodle.velocity_y > 0:
+                        if platform.rect.colliderect(self.doodle.rect):
+                            if self.doodle.rect.bottom <= platform.rect.top + 30:  
+                                self.doodle.rect.bottom = platform.rect.top
+                                self.doodle.velocity_y = -20
                             
                 scroll = self.doodle.update_jump(self.gravity)
                 self.doodle.wrap_around(self.width) 
