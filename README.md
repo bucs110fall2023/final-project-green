@@ -40,6 +40,8 @@ Our game is going to be a recreation of the game doodle jump. The character (Mon
 
 ### Classes
 
+![Class diagram](assets/class_diagram.jpg)
+
 ### Character class
 This class initialized the character sprite model. This class also handles the jumping mechanics of the model and wrap around feature. It also returns information that makes the vertical scrolling possible.
 
