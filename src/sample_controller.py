@@ -72,7 +72,6 @@ class Controller:
                 pygame.draw.rect(self.screen, "ivory", self.start_button)
                 font = pygame.font.Font(None, 36)
                 text = font.render("START", True, "black")
-                text_rect = text.get_rect(center=self.start_button.center)
                 self.screen.blit(text, (self.width/2 - 40, self.height/2 - 13))
                 
                 pygame.display.flip()            
@@ -122,7 +121,6 @@ class Controller:
                     pygame.draw.rect(self.screen, "ivory", self.restart_button)
                     font = pygame.font.Font(None, 36)
                     text = font.render("RESTART", True, "black")
-                    text_rect = text.get_rect(center=self.restart_button.center)
                     self.screen.blit(text, (self.width/2 - 50, self.height/2 + 37))
                     
                     pygame.display.flip()
